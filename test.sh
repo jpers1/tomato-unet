@@ -10,10 +10,18 @@
 #SBATCH --mem=64GB                # Memory limit
 #SBATCH --partition=gpu           # GPU partition
 
+# Check if model path is provided
+if [ -z "$1" ]; then
+    echo "Error: Model path not provided"
+    echo "Usage: sbatch test.sh <path_to_model_checkpoint>"
+    exit 1
+fi
+
 # Print some information about the job
 echo "Job ID: $SLURM_JOB_ID"
 echo "Node: $SLURM_JOB_NODELIST"
 echo "Start time: $(date)"
+echo "Model path: $1"
 
 # Load necessary modules
 module purge
@@ -23,19 +31,8 @@ module load Python/3.10.4-GCCcore-11.3.0
 module load matplotlib/3.5.2-foss-2022a
 module load tqdm/4.64.1-GCCcore-12.2.0
 
-# Install albumentations if not already installed
-#pip install --user albumentations
-
-# Print environment information
-#echo "Python path: $(which python)"
-#echo "Python version: $(python --version)"
-#echo "CUDA version: $(nvcc --version)"
-
-# Navigate to your project directory
-#cd $SLURM_SUBMIT_DIR
-
-# Run the test script
-python test.py --model_path output_20241217_130332/checkpoints/best_model.pt
+# Run the test script with provided model path
+python test.py --model_path "$1"
 
 # Print end time
 echo "End time: $(date)"
