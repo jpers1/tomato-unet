@@ -1,0 +1,6 @@
+## Ignore all folders
+*/
+## Ignore all zip files
+*.zip
+## Ignore backup files
+*.bak
