@@ -2,5 +2,7 @@
 */
 ## Ignore all zip files
 *.zip
-## Ignore backup files
+## Ignore files with the following extensions
 *.bak
+*.err
+*.out
