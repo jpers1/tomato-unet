@@ -32,11 +32,6 @@ This project implements a U-Net model for precise tomato segmentation in images.
    cd <repository-directory>
    ```
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
 ---
 
 ## Dataset Structure
@@ -91,9 +86,4 @@ laboro_tomato/
 The U-Net model includes:
 - **Encoder:** Extracts image features using convolutional layers.
 - **Decoder:** Reconstructs the segmentation mask with skip connections.
-
----
-
-## Evaluation Metrics
-- **IoU (Intersection over Union):** Evaluates segmentation performance.
 
