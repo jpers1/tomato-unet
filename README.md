@@ -19,10 +19,12 @@ cd tomato_segmentation/
 ```
 
 ## Dataset
-Download the dataset using [gdown](https://github.com/wkentaro/gdown):
+Download the dataset using [gdown](https://github.com/wkentaro/gdown) and unzip
+it so the `laboro_tomato` directory appears in the project root:
 
 ```bash
 gdown --id 1K5Zo47YIddzO3OnLgOJJbQig8TC_uSjb
+unzip laboro_tomato.zip
 ```
 
 If `gdown` is not installed you can add it with:
@@ -48,10 +50,9 @@ laboro_tomato/
 └── annotations.json            # Bounding box and ripeness labels
 ```
 
-By default `train.py` and `test.py` look for this `laboro_tomato` directory
-one level above the repository. Make sure the dataset is located at
-`../laboro_tomato` relative to the project root or adjust the scripts if you keep
-it elsewhere.
+By default `train.py` and `test.py` look for the `laboro_tomato` directory in
+the project root. Ensure the dataset was unzipped inside this repository or
+adjust the scripts if you keep it elsewhere.
 
 ## Running in batch mode on HPC
 
@@ -84,8 +85,7 @@ module purge
 module load CUDA/11.7.0
 module load PyTorch/1.12.0-foss-2022a-CUDA-11.7.0
 module load Python/3.10.4-GCCcore-11.3.0
-module load matplotlib/3.5.2-foss-2022a
-module load tqdm/4.64.1-GCCcore-12.2.0
+module load tqdm/4.64.1-GCCcore-12.2.0  # This provides tqdm!
 
 # Install any missing Python packages
 pip install --user albumentations
