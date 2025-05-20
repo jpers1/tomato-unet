@@ -36,6 +36,10 @@ laboro_tomato/
 └── annotations.json            # Bounding box and ripeness labels
 ```
 
+Place this directory next to the repository root so that its path is
+`../laboro_tomato` when working inside the cloned project. The provided
+training and testing scripts expect the dataset at this location.
+
 ## Training
 
 Submit the training job:
@@ -43,10 +47,29 @@ Submit the training job:
 sbatch train.sh
 ```
 
+
 The training script:
 - Loads the dataset from the `laboro_tomato` directory.
 - Trains the U-Net model.
 - Saves the best model checkpoint in the `output_<timestamp>/checkpoints` directory.
+
+## Interactive Run Example
+
+To run the training interactively on a login node, load the required modules and
+install the additional Python package:
+
+```bash
+module purge
+module load CUDA/11.7.0
+module load PyTorch/1.12.0-foss-2022a-CUDA-11.7.0
+module load Python/3.10.4-GCCcore-11.3.0
+module load matplotlib/3.5.2-foss-2022a
+module load tqdm/4.64.1-GCCcore-12.2.0
+
+pip install --user albumentations
+
+python train.py
+```
 
 ## Testing
 
