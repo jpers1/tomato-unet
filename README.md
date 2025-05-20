@@ -48,6 +48,11 @@ laboro_tomato/
 └── annotations.json            # Bounding box and ripeness labels
 ```
 
+By default `train.py` and `test.py` look for this `laboro_tomato` directory
+one level above the repository. Make sure the dataset is located at
+`../laboro_tomato` relative to the project root or adjust the scripts if you keep
+it elsewhere.
+
 ## Running in batch mode on HPC
 
 Submit the training job:
@@ -72,7 +77,25 @@ The testing script:
 
 ## Running in interactive mode on HPC
 
-For interactive sessions we recommend installing [uhpc-tools](https://github.com/jpers1/uhpc-tools). After installation you can request an interactive GPU session and run `python train.py` or `python test.py` directly.
+Start an interactive session on the cluster and load the required modules:
+
+```bash
+module purge
+module load CUDA/11.7.0
+module load PyTorch/1.12.0-foss-2022a-CUDA-11.7.0
+module load Python/3.10.4-GCCcore-11.3.0
+module load matplotlib/3.5.2-foss-2022a
+module load tqdm/4.64.1-GCCcore-12.2.0
+
+# Install any missing Python packages
+pip install --user albumentations
+```
+
+From the repository directory run the training or testing script directly:
+
+```bash
+python train.py        # or python test.py --model_path <checkpoint>
+```
 
 ## Model Architecture
 The U-Net model includes:
